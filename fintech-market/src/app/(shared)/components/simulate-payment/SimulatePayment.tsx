@@ -234,8 +234,10 @@ export default function SimulatePayment({ accounts }: SimulatePaymentProps) {
             setPayment({ ...payment, description: value } as Payment);
           }}
         />
-        {formErrors.map((error) => (
-          <span className="text-xs text-red-800">{error}</span>
+        {formErrors.map((error, index) => (
+          <span key={`error-${index}`} className="text-xs text-red-800">
+            {error}
+          </span>
         ))}
         <button
           onClick={handleCreatePayment}

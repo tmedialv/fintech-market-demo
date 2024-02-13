@@ -44,8 +44,6 @@ export async function callApi<T>(
   if (response.status === 200 || response.status === 201) {
     const result = (await response.json()) as ApiResponse;
     return result.data as T;
-  } else {
-    console.log(await response.text());
   }
 
   return null;

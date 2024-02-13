@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { Payment } from "fintech/app/(shared)/types/Payment";
 import EmptyState from "fintech/app/(shared)/components/EmptyState";
 
@@ -11,11 +10,6 @@ export default function PaymentHistory({
   accountId,
   payments,
 }: PaymentHistoryProps) {
-  const isBeneficiaryPayment = (payment: Payment) =>
-    useMemo(() => {
-      return payment.beneficiary_account_id === accountId;
-    }, [payment]);
-
   return (
     <div className="flex flex-col gap-2 my-8">
       <h3>Payment history</h3>
@@ -33,14 +27,18 @@ export default function PaymentHistory({
               {payments.reverse().map((payment) => (
                 <tr key={payment.id}>
                   <td>
-                    {isBeneficiaryPayment(payment)
+                    {payment.beneficiary_account_id === accountId
                       ? payment.remitter_name
                       : payment.beneficiary_name}
                   </td>
                   <td>{payment.description}</td>
                   <td>
-                    {isBeneficiaryPayment(payment) ? <>+</> : <>-</>}€
-                    {payment.amount}
+                    {payment.beneficiary_account_id === accountId ? (
+                      <>+</>
+                    ) : (
+                      <>-</>
+                    )}
+                    €{payment.amount}
                   </td>
                 </tr>
               ))}
