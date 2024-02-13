@@ -2,32 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    @apply antialiased bg-neutral-50 tracking-tight;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h2 {
+    @apply text-xl lg:text-2xl font-semibold;
+}
+
+h3 {
+    @apply text-base lg:text-xl font-semibold;
+}
+
+h4 {
+    @apply text-sm lg:text-lg font-semibold;
+}
+
+.container {
+    @apply max-w-5xl mx-auto px-4 lg:px-10;
+}
+
+.btn {
+    @apply px-6 py-2.5 rounded-3xl text-sm font-medium tracking-tight;
+}
+
+.btn-primary {
+    @apply bg-black text-white hover:bg-black/90;
+}
+
+.btn-secondary {
+    @apply bg-neutral-50 text-gray-900 hover:bg-neutral-100 border;
+}
+
+.btn-danger {
+    @apply bg-red-700 text-white hover:bg-red-700/90;
+}
+
+table td, table th {
+    @apply px-3 py-2.5;
+}
+
+table thead tr {
+    @apply bg-neutral-200;
+}
+
+table tr {
+    @apply bg-white even:bg-neutral-100;
+}
+
+table tr {
+    @apply rounded-t-2xl
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    @apply appearance-none m-0;
 }
